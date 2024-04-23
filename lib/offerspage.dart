@@ -32,21 +32,30 @@ class Offer extends StatelessWidget {
         child: Card(
           color: Colors.brown.shade100,
           elevation: 17,
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Center(
-                    child: Text(title,
-                        style: Theme.of(context).textTheme.headlineMedium)),
+          child: Container(
+            decoration: const BoxDecoration(
+                image: DecorationImage(
+              fit: BoxFit.cover,
+              image: AssetImage(
+                "images/background.png",
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Center(
-                    child: Text(description,
-                        style: Theme.of(context).textTheme.headlineSmall)),
-              ),
-            ],
+            )),
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Center(
+                      child: Text(title,
+                          style: Theme.of(context).textTheme.headlineMedium)),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Center(
+                      child: Text(description,
+                          style: Theme.of(context).textTheme.headlineSmall)),
+                ),
+              ],
+            ),
           ),
         ),
       ),
