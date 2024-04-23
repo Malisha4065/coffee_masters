@@ -5,9 +5,33 @@ class OffersPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Offer(
-      title: "My great offer",
-      description: "Buy 1 Get 1 free",
+    return ListView(
+      children: const [
+        Offer(
+          title: "My great offer",
+          description: "Buy 1 Get 1 free",
+        ),
+        Offer(
+          title: "Holiday offer",
+          description: "30% off for selected items",
+        ),
+        Offer(
+          title: "New year offer",
+          description: "Special discounts",
+        ),
+        Offer(
+          title: "My great offer",
+          description: "Buy 1 Get 1 free",
+        ),
+        Offer(
+          title: "Holiday offer",
+          description: "30% off for selected items",
+        ),
+        Offer(
+          title: "New year offer",
+          description: "Special discounts",
+        ),
+      ],
     );
   }
 }
@@ -26,11 +50,11 @@ class Offer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 150,
+      height: 180,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Card(
-          color: Colors.brown.shade100,
+          color: Colors.amber.shade50,
           elevation: 17,
           child: Container(
             decoration: const BoxDecoration(
@@ -45,14 +69,26 @@ class Offer extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Center(
+                      child: Container(
+                    color: Colors.amber.shade50,
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
                       child: Text(title,
-                          style: Theme.of(context).textTheme.headlineMedium)),
+                          style: Theme.of(context).textTheme.headlineMedium),
+                    ),
+                  )),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Center(
+                      child: Container(
+                    color: Colors.amber.shade50,
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
                       child: Text(description,
-                          style: Theme.of(context).textTheme.headlineSmall)),
+                          style: Theme.of(context).textTheme.headlineSmall),
+                    ),
+                  )),
                 ),
               ],
             ),
