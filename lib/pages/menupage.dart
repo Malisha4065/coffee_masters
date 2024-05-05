@@ -1,8 +1,10 @@
+import 'package:coffee_masters/datamanager.dart';
 import 'package:coffee_masters/datamodel.dart';
 import 'package:flutter/material.dart';
 
 class MenuPage extends StatelessWidget {
-  const MenuPage({super.key});
+  final DataManager dataManager;
+  const MenuPage({super.key, required this.dataManager});
 
   @override
   Widget build(BuildContext context) {
@@ -17,9 +19,18 @@ class MenuPage extends StatelessWidget {
 
     return ListView(
       children: [
-        ProductItem(product: p, onAdd: (){},),
-        ProductItem(product: q, onAdd: (){},),
-        ProductItem(product: r, onAdd: (){},),
+        ProductItem(
+          product: p,
+          onAdd: () {},
+        ),
+        ProductItem(
+          product: q,
+          onAdd: () {},
+        ),
+        ProductItem(
+          product: r,
+          onAdd: () {},
+        ),
       ],
     );
   }
@@ -29,8 +40,7 @@ class ProductItem extends StatelessWidget {
   final Product product;
   final Function onAdd;
 
-  const ProductItem({super.key, required this.product,
-      required this.onAdd});
+  const ProductItem({super.key, required this.product, required this.onAdd});
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +77,9 @@ class ProductItem extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(right: 8.0),
                   child: ElevatedButton(
-                    onPressed: () {onAdd(product)},
+                    onPressed: () {
+                     onAdd(product);
+                    },
                     child: const Text("Add"),
                   ),
                 )
