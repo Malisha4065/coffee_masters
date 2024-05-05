@@ -8,31 +8,23 @@ class MenuPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var p = Product(id: 1, name: "Dummy Product", price: 1.25, image: "");
-    var q =
-        Product(id: 2, name: "Another dummy Product", price: 1.25, image: "");
-    var r = Product(
-        id: 3,
-        name: "Different dummy Product much larger",
-        price: 1.25,
-        image: "");
-
-    return ListView(
-      children: [
-        ProductItem(
-          product: p,
-          onAdd: () {},
-        ),
-        ProductItem(
-          product: q,
-          onAdd: () {},
-        ),
-        ProductItem(
-          product: r,
-          onAdd: () {},
-        ),
-      ],
-    );
+    return FutureBuilder(
+        future: dataManager.getMenu(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            // The future has finished
+            var categories = snapshot.data!;
+            return Text("There are ${categories.length} categories");
+          } else {
+            if (snapshot.hasError) {
+              // Data is not there because of an error
+              return const Text("There was an error");
+            } else {
+              // Data is in progress
+              return const CircularProgressIndicator();
+            }
+          }
+        });
   }
 }
 
@@ -78,7 +70,7 @@ class ProductItem extends StatelessWidget {
                   padding: const EdgeInsets.only(right: 8.0),
                   child: ElevatedButton(
                     onPressed: () {
-                     onAdd(product);
+                      onAdd(product);
                     },
                     child: const Text("Add"),
                   ),
