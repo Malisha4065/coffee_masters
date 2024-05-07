@@ -14,7 +14,30 @@ class MenuPage extends StatelessWidget {
           if (snapshot.hasData) {
             // The future has finished
             var categories = snapshot.data!;
-            return Text("There are ${categories.length} categories");
+            return ListView.builder(
+                itemCount: categories.length,
+                itemBuilder: ((context, index) {
+                  return Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(categories[index].name),
+                      ),
+                      ListView.builder(
+                          shrinkWrap: true,
+                          physics: const ClampingScrollPhysics(),
+                          itemCount: categories[index].products.length,
+                          itemBuilder: (context, prodIndex) {
+                            var product = categories[index].products[prodIndex];
+                            return ProductItem(
+                                product: product,
+                                onAdd: (addedProduct) {
+                                  dataManager.cartAdd(addedProduct);
+                                });
+                          })
+                    ],
+                  );
+                }));
           } else {
             if (snapshot.hasError) {
               // Data is not there because of an error
@@ -45,7 +68,7 @@ class ProductItem extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.only(top: 8.0, left: 8.0, right: 8.0),
-              child: Image.asset("images/black_coffee.png"),
+              child: Image.network(product.imageUrl),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
